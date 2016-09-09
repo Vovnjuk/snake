@@ -1,14 +1,14 @@
 #grid{
 	display: table;
 	margin: 0 auto;
-	border: solid grey 1px;
+	border: solid LightGrey 1px;
 }
 
 .cell {
 	display: inline-block;
-	width:15px;
-	height: 15px;
-	border: solid grey 1px;
+	width:14px;
+	height: 14px;
+	border: solid LightGrey 1px;
 	margin: 0px;
 }
 
@@ -18,4 +18,13 @@
 
 .food {
 	background-color: red;
+}
+
+#content{
+	display: table;
+	margin: 0 auto;
+}
+
+h1{
+	text-align: center;
 }

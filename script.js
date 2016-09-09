@@ -3,14 +3,17 @@ $( document ).ready(function() {
 	start();
 	place_food();
 	move();
+	
 });
 
 var snake = [[0, 3], [0, 2], [0,1], [0,0]];
 var direction = 4; //right
+var new_direction =4; // right
+var timeout = 150;
 
 var render = function() {
-	grid_height = 10;
-	grid_width = 10;
+	grid_height = 40;
+	grid_width = 40;
 	for (var i = 0; i < grid_height; i++) {
 		for (var j = 0; j < grid_width; j++) {
 			$ ("#grid").append( '<div class="cell" id=i' + i + 'j' + j + '></div>');
@@ -58,12 +61,13 @@ document.onkeydown = function change_direction(e) {
     else if (e.keyCode == '39') {
        new_direction = 4// right arrow
     }
-    if (direction + new_direction != 5) {direction = new_direction;}
-
+    
 };
 
 var move = function () {
-	remove_snake(snake[snake.length-1]);
+	if (direction + new_direction != 5) {direction = new_direction;}
+
+	remove_snake(snake[snake.length - 1]);
 
 	for (var i = snake.length - 1; i > 0; i--) {
 		snake[i] = snake[i-1].slice();
@@ -96,9 +100,10 @@ var move = function () {
     	snake.push([]);
     	$ ("#" + array_to_id( food )).removeClass("food");
 		place_food();
+		timeout = 150 * Math.pow(0.99, snake.length - 4);
 	}
 
-    setTimeout(move,200);
+    setTimeout(move, timeout);
 };
 
 var place_food = function () {
