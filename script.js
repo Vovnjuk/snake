@@ -1,8 +1,10 @@
 $( document ).ready(function() {
 	render();
 	start();
+	get_statistics();
 	place_food();
 	move();
+
 	
 });
 
@@ -40,6 +42,11 @@ var array_to_id = function (array) {
 	var x = 'i' + array[0] + 'j' + array[1];
 	return x;
 };
+
+var get_statistics = function () {
+	$( '#score ' ).find( 'span' ).html( snake.length );
+	$( '#speed ' ).find( 'span' ).html( timeout );
+}
 
 $( "#grid" ).keypress(function() {
   console.log( "Handler for .keypress() called." );
@@ -101,6 +108,7 @@ var move = function () {
     	$ ("#" + array_to_id( food )).removeClass("food");
 		place_food();
 		timeout = 150 * Math.pow(0.99, snake.length - 4);
+		get_statistics();
 	}
 
     setTimeout(move, timeout);
